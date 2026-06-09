@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>yFresh — Case Study · Keith Brooks</title>
+<meta name="description" content="yFresh — a mobile app for fresh, human-grade, vet-approved pet meals, designed around real allergies, picky eaters, and budgets. A case study by Keith Brooks, UX/UI Designer."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/ds.css"/>
+<script src="assets/gate.js"></script>
+<style>
+/* ============================================================
+   MARKETSQUARE CASE STUDY — page styles
+   (Reusable template: duplicate, swap copy + image URLs.)
+   ============================================================ */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad-x);}
+.col{max-width:760px;}
+
+/* Back link under nav */
+.cs-back{position:fixed;top:0;left:0;height:var(--nav-h);display:flex;align-items:center;}
+
+/* ---------- HERO ---------- */
+.cs-hero{padding:140px var(--pad-x) 0;max-width:var(--maxw);margin:0 auto;}
+.cs-hero-eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;}
+.cs-hero-eyebrow .num{color:var(--accent-d);}
+.cs-hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--accent-d);}
+.cs-hero h1{font-family:var(--f-display);font-size:clamp(72px,13vw,200px);line-height:.86;letter-spacing:.02em;color:var(--ink);margin-bottom:24px;}
+.cs-hero h1 .hl{color:var(--accent-d);}
+.cs-lede{font-family:var(--f-body);font-size:clamp(19px,2.1vw,26px);line-height:1.5;font-weight:300;color:var(--body);max-width:780px;margin-bottom:48px;}
+.cs-lede strong{font-weight:600;color:var(--ink);}
+
+.cs-meta{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.cs-meta-cell{padding:22px 24px;border-right:1px solid var(--border);}
+.cs-meta-cell:first-child{padding-left:0;}
+.cs-meta-cell:last-child{border-right:none;}
+.cs-meta-k{font-family:var(--f-mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.cs-meta-v{font-family:var(--f-body);font-size:15px;font-weight:600;color:var(--ink);line-height:1.35;}
+
+.cs-hero-fig{margin:48px 0 0;display:flex;justify-content:center;}
+.cs-hero-fig img{height:auto;max-height:500px;width:auto;max-width:100%;display:block;}
+
+/* ---------- SECTION SHELL ---------- */
+.cs-sec{padding:104px 0;position:relative;scroll-margin-top:84px;}
+.cs-sec.alt{background:var(--bg2);}
+.sec-head{display:flex;gap:28px;align-items:flex-start;margin-bottom:44px;}
+.sec-no{font-family:var(--f-mono);font-size:13px;font-weight:500;color:var(--accent-d);letter-spacing:.1em;padding-top:10px;flex-shrink:0;}
+.sec-title{font-family:var(--f-display);font-size:clamp(40px,5.4vw,76px);line-height:.92;letter-spacing:.02em;color:var(--ink);}
+.sec-title .dim{color:var(--dim);}
+.sec-kicker{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.sec-kicker::before{content:'';width:16px;height:1px;background:var(--accent-d);}
+
+.prose p{font-family:var(--f-body);font-size:17.5px;line-height:1.74;color:var(--body);font-weight:300;margin-bottom:22px;max-width:760px;}
+.prose p strong{font-weight:600;color:var(--ink);}
+.prose p em{font-style:italic;}
+.lead{font-size:21px!important;line-height:1.6!important;color:var(--ink)!important;font-weight:400!important;}
+
+/* ---------- PULL QUOTE ---------- */
+.pull{margin:56px 0;padding:0 0 0 28px;border-left:3px solid var(--accent-d);max-width:840px;}
+.pull p{font-family:var(--f-display);font-size:clamp(28px,4vw,52px);line-height:1.04;letter-spacing:.02em;color:var(--ink);}
+.pull .hl{color:var(--accent-d);}
+
+/* ---------- GOAL / NUMBERED LIST ---------- */
+.goal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;}
+.goal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px 28px;transition:transform .35s var(--ease-expo),border-color .3s;}
+.goal:hover{transform:translateY(-4px);border-color:var(--accent-d);}
+.goal-no{font-family:var(--f-display);font-size:46px;line-height:1;color:var(--accent-d);margin-bottom:16px;letter-spacing:.02em;}
+.goal h4{font-family:var(--f-body);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;letter-spacing:-.01em;}
+.goal p{font-family:var(--f-body);font-size:14px;line-height:1.6;color:var(--muted);font-weight:300;}
+
+/* ---------- TWO-CARD (business / user need) ---------- */
+.need-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:40px 0;}
+.need{border-radius:16px;padding:34px;border:1px solid var(--border);}
+.need.biz{background:var(--ink);color:var(--bg);}
+.need.usr{background:var(--card);}
+.need-tag{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;}
+.need.biz .need-tag{color:rgba(255,255,255,.5);}
+.need.usr .need-tag{color:var(--accent-d);}
+.need p{font-family:var(--f-body);font-size:17px;line-height:1.6;font-weight:300;}
+.need.biz p{color:rgba(255,255,255,.92);}
+.need.usr p{color:var(--body);}
+.need p strong{font-weight:600;}
+.need.usr p strong{color:var(--ink);}
+
+/* ---------- PROBLEM STATEMENT ---------- */
+.problem{margin:48px 0 8px;background:var(--accent-d);border-radius:20px;padding:clamp(40px,5vw,68px);color:#fff;}
+.problem .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:22px;}
+.problem p{font-family:var(--f-display);font-size:clamp(28px,3.8vw,50px);line-height:1.04;letter-spacing:.02em;color:#fff;}
+
+/* ---------- FRICTION CARDS ---------- */
+.friction-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;}
+.fr{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px 28px;}
+.fr-no{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:var(--accent-d);margin-bottom:18px;}
+.fr h4{font-family:var(--f-display);font-size:30px;letter-spacing:.03em;color:var(--ink);margin-bottom:12px;}
+.fr p{font-family:var(--f-body);font-size:14px;line-height:1.62;color:var(--muted);font-weight:300;}
+
+/* ---------- FIGURES ---------- */
+.fig{margin:44px 0;}
+.fig-frame{border-radius:18px;overflow:hidden;border:1px solid var(--border);background:#fff;}
+.fig-frame img{width:100%;height:auto;display:block;}
+.fig-cap{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--muted);margin-top:14px;display:flex;gap:10px;align-items:baseline;}
+.fig-cap::before{content:'';width:14px;height:1px;background:var(--accent-d);flex-shrink:0;position:relative;top:6px;}
+.fig-row{display:grid;gap:16px;margin:44px 0;}
+.fig-row.r3{grid-template-columns:repeat(3,1fr);}
+.fig-row.r2{grid-template-columns:repeat(2,1fr);}
+.fig-row .fig-frame img{width:100%;height:auto;}
+
+/* VALIDATION CARDS (mirror reflection cards) */
+.val-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:44px 0 0;}
+.val-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px 30px;display:flex;flex-direction:column;gap:16px;margin:0;min-height:188px;transition:transform .35s var(--ease-expo),border-color .3s;}
+.val-card:hover{transform:translateY(-4px);border-color:var(--accent-d);}
+.val-tag{font-family:var(--f-mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-d);}
+.val-quote{font-family:var(--f-body);font-size:19px;line-height:1.5;color:var(--ink);font-weight:300;letter-spacing:-.005em;}
+.val-quote strong{font-weight:600;color:var(--accent-d);}
+@media(max-width:700px){.val-grid{grid-template-columns:1fr;}}
+
+/* DESIGN SYSTEM BOARD (auto-scaled live artifact) */
+.dsboard-frame{position:relative;aspect-ratio:1600/1080;overflow:hidden;padding:0;}
+.dsboard-scale{position:absolute;top:0;left:0;width:1600px;height:1080px;transform-origin:top left;}
+.dsboard-scale iframe{width:1600px;height:1080px;border:0;display:block;background:#FBFAFD;}
+
+/* SOLUTION FIGS — sized to match iteration thumbnails */
+.sol-figs{display:flex;gap:16px;flex-wrap:wrap;}
+.sol-figs .fig{width:340px;max-width:100%;margin:0;flex:0 0 auto;}
+
+/* yFresh additions */
+image-slot{border:1px solid var(--border);background:var(--bg2);border-radius:18px;overflow:hidden;}
+.proc{display:flex;flex-wrap:wrap;gap:10px;margin:44px 0 0;}
+.proc-step{flex:1;min-width:120px;display:flex;flex-direction:column;gap:10px;padding:18px 20px;border:1px solid var(--border);border-radius:14px;background:var(--card);}
+.proc-n{font-family:var(--f-mono);font-size:11px;color:var(--accent-d);letter-spacing:.1em;}
+.proc-t{font-family:var(--f-display);font-size:26px;letter-spacing:.03em;color:var(--ink);line-height:1;}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px;}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px 26px;}
+.stat-n{font-family:var(--f-display);font-size:clamp(40px,4.4vw,58px);line-height:.9;color:var(--ink);margin-bottom:14px;letter-spacing:.02em;}
+.stat-n .u{font-size:.5em;color:var(--accent-d);}
+.stat-k{font-family:var(--f-body);font-size:13.5px;line-height:1.5;color:var(--muted);font-weight:300;}
+.insights{display:grid;grid-template-columns:1fr 1fr;gap:0 36px;margin-top:36px;}
+.ins{display:flex;gap:16px;font-family:var(--f-body);font-size:16px;line-height:1.55;color:var(--body);font-weight:300;padding:20px 0;border-top:1px solid var(--border);}
+.ins b{font-family:var(--f-display);font-size:26px;color:var(--accent-d);letter-spacing:.02em;line-height:.9;flex-shrink:0;}
+.ba{margin:0 0 18px;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:32px;}
+.ba-head{display:flex;gap:18px;align-items:flex-start;margin-bottom:14px;}
+.ba-no{font-family:var(--f-display);font-size:42px;color:var(--accent-d);line-height:.8;letter-spacing:.02em;flex-shrink:0;}
+.ba-t{font-family:var(--f-body);font-size:19px;font-weight:600;color:var(--ink);letter-spacing:-.01em;padding-top:4px;}
+.ba-b{font-family:var(--f-body);font-size:15.5px;line-height:1.65;color:var(--muted);font-weight:300;max-width:780px;}
+.ba-b strong{color:var(--ink);font-weight:600;}
+.ba-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;align-items:start;}
+/* equal-size side-by-side images */
+.fig-row .fig-frame{height:var(--rh,360px);display:flex;align-items:center;justify-content:center;background:#fff;}
+.fig-row .fig-frame img{width:100%;height:100%;object-fit:contain;}
+.ba-pair .fig-frame{height:var(--rh,540px);display:flex;align-items:center;justify-content:center;background:#fff;}
+.ba-pair .fig-frame img{width:100%;height:100%;object-fit:contain;}
+.single-fig{margin:36px auto;max-width:520px;}
+.single-fig .fig-frame{height:420px;display:flex;align-items:center;justify-content:center;background:#fff;}
+.single-fig .fig-frame img{width:100%;height:100%;object-fit:contain;}
+/* phone screens — transparent, no frame */
+.phone-fig .fig-frame{background:transparent!important;border:none!important;border-radius:0;}
+/* zoom controls */
+.zoom-in .fig-frame img{object-fit:cover;}
+.zoom-out .fig-frame{padding:38px;}
+.ba-col .pl{font-family:var(--f-mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.a11y{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:40px 0;}
+.a11y-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 26px;}
+.a11y-sw{display:flex;gap:8px;margin-bottom:18px;}
+.a11y-sw span{width:36px;height:36px;border-radius:9px;border:1px solid var(--border);}
+.a11y-card h4{font-family:var(--f-body);font-size:15.5px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.a11y-card p{font-family:var(--f-body);font-size:13.5px;line-height:1.62;color:var(--muted);font-weight:300;}
+.a11y-card code{font-family:var(--f-mono);font-size:12px;color:var(--accent-d);}
+@media(max-width:900px){.stat-grid{grid-template-columns:1fr 1fr;}.insights{grid-template-columns:1fr;}.a11y{grid-template-columns:1fr;}.ba-pair{grid-template-columns:1fr;}.proc-step{min-width:90px;}}
+
+/* ---------- HMW SOLUTION BLOCKS ---------- */
+.hmw{margin:64px 0;}
+.hmw-head{display:flex;gap:24px;align-items:flex-start;margin-bottom:14px;}
+.hmw-no{font-family:var(--f-display);font-size:clamp(48px,7vw,92px);line-height:.8;color:var(--accent-d);letter-spacing:.02em;flex-shrink:0;}
+.hmw-q{font-family:var(--f-body);font-size:clamp(20px,2.4vw,28px);line-height:1.32;font-weight:300;color:var(--ink);padding-top:6px;}
+.hmw-q strong{font-weight:600;}
+.hmw-body{font-family:var(--f-body);font-size:16px;line-height:1.7;color:var(--muted);font-weight:300;max-width:720px;margin:8px 0 0 0;padding-left:0;}
+.hmw-body strong{color:var(--ink);font-weight:600;}
+
+/* ---------- METRICS ---------- */
+.results{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-left:1px solid var(--border);}
+.res{padding:48px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.res::after{content:'';position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--accent-d);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease-expo);}
+.res:hover::after{transform:scaleX(1);}
+.res-num{font-family:var(--f-display);font-size:clamp(54px,6vw,88px);line-height:.86;letter-spacing:.02em;color:var(--ink);margin-bottom:14px;}
+.res-k{font-family:var(--f-body);font-size:14px;line-height:1.5;color:var(--body);font-weight:400;}
+.res-sub{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px;}
+
+/* ---------- TAKEAWAYS ---------- */
+.take-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;}
+.take{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:34px 30px;}
+.take-tag{font-family:var(--f-mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-d);margin-bottom:18px;}
+.take h4{font-family:var(--f-display);font-size:30px;letter-spacing:.03em;color:var(--ink);margin-bottom:14px;line-height:1;}
+.take p{font-family:var(--f-body);font-size:14.5px;line-height:1.66;color:var(--muted);font-weight:300;}
+.take p strong{color:var(--ink);font-weight:600;}
+
+/* ---------- NEXT / CTA ---------- */
+.cs-next{background:var(--ink);color:var(--bg);padding:clamp(64px,9vw,128px) var(--pad-x);text-align:center;}
+.cs-next .s-tag{justify-content:center;color:rgba(255,255,255,.55);}
+.cs-next .s-tag::before{background:var(--accent-d);}
+.cs-next h2{font-family:var(--f-display);font-size:clamp(48px,8vw,108px);line-height:.92;letter-spacing:.03em;color:var(--bg);margin:14px 0 14px;}
+.cs-next h2 .hl{color:var(--accent-d);}
+.cs-next p{font-family:var(--f-body);font-size:17px;line-height:1.6;color:rgba(240,240,240,.7);font-weight:300;max-width:520px;margin:0 auto 40px;}
+.cs-next-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.cs-next .btn-light{background:var(--bg);color:var(--ink);}
+.cs-next .btn-light:hover{background:var(--accent-d);color:#fff;transform:translateY(-2px);}
+.cs-next .btn-outline{background:transparent;color:var(--bg);border:1px solid rgba(255,255,255,.25);}
+.cs-next .btn-outline:hover{border-color:#fff;transform:translateY(-2px);}
+
+/* ---------- STICKY SECTION RAIL ---------- */
+.rail{position:fixed;top:50%;left:24px;transform:translateY(-50%);z-index:500;display:flex;flex-direction:column;gap:3px;}
+.rail a{display:flex;align-items:center;gap:11px;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);padding:5px 0;transition:color .25s;cursor:none;}
+.rail a .dot{width:7px;height:7px;border-radius:50%;border:1px solid var(--dim);transition:all .25s;flex-shrink:0;}
+.rail a .lbl{opacity:0;transform:translateX(-4px);transition:opacity .25s,transform .25s;white-space:nowrap;}
+.rail:hover a .lbl{opacity:1;transform:translateX(0);}
+.rail a:hover{color:var(--ink);}
+.rail a.active{color:var(--accent-d);}
+.rail a.active .dot{background:var(--accent-d);border-color:var(--accent-d);transform:scale(1.25);}
+.rail a.active .lbl{opacity:1;transform:translateX(0);}
+@media(max-width:1320px){.rail{display:none;}}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .goal-grid,.friction-grid,.take-grid{grid-template-columns:1fr;}
+  .need-grid{grid-template-columns:1fr;}
+  .cs-meta{grid-template-columns:1fr 1fr;}
+  .cs-meta-cell:nth-child(2){border-right:none;}
+  .cs-meta-cell:nth-child(3),.cs-meta-cell:nth-child(4){border-top:1px solid var(--border);}
+  .results{grid-template-columns:1fr 1fr;}
+  .fig-row.r3{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:560px){
+  .cs-meta,.results{grid-template-columns:1fr;}
+  .cs-meta-cell{border-right:none;border-top:1px solid var(--border);}
+  .cs-meta-cell:first-child{border-top:none;}
+  .fig-row.r3,.fig-row.r2{grid-template-columns:1fr;}
+  .sec-head{gap:16px;}
+  .hmw-head{flex-direction:column;gap:8px;}
+}
+</style>
+</head>
+<body>
+
+<div id="scroll-prog" aria-hidden="true"></div>
+<div id="_cur" aria-hidden="true"></div>
+<div id="_ring" aria-hidden="true"></div>
+<button id="back-top" aria-label="Back to top" title="Back to top">↑</button>
+
+<!-- NAV -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo" aria-label="Keith Brooks — home">KEITH<span>.</span></a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html#work">Projects</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#testimonials">Kind Words</a></li>
+    <li><a href="https://docs.google.com/document/d/1cGZoGCiG8sLohpiwcJd-tVt59pux1qdXXD4wqP0VGAY/edit?tab=t.0" target="_blank" rel="noopener">Resume</a></li>
+  </ul>
+  <div class="tt-wrap">
+    <label class="tt-switch" aria-label="Toggle light / dark mode">
+      <input type="checkbox" id="tt-cb" autocomplete="off"/>
+      <div class="tt-track"></div>
+      <div class="tt-knob">
+        <svg class="tt-icon tt-sun" viewBox="0 0 24 24" fill="none" stroke="var(--tt-icon)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.9" y1="4.9" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="19.1" y2="19.1"/><line x1="4.9" y1="19.1" x2="7.1" y2="16.9"/><line x1="16.9" y1="7.1" x2="19.1" y2="4.9"/></svg>
+        <svg class="tt-icon tt-moon" viewBox="0 0 24 24" fill="none" stroke="var(--tt-icon)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </div>
+    </label>
+    <a id="nav-cta" href="index.html#connect">Let's Connect</a>
+  </div>
+</nav>
+
+<!-- SECTION RAIL -->
+<nav class="rail" data-section-nav aria-label="Section navigation">
+  <a href="#overview"><span class="dot"></span><span class="lbl">Overview</span></a>
+  <a href="#research"><span class="dot"></span><span class="lbl">Research</span></a>
+  <a href="#define"><span class="dot"></span><span class="lbl">Define</span></a>
+  <a href="#ideate"><span class="dot"></span><span class="lbl">Ideate</span></a>
+  <a href="#design"><span class="dot"></span><span class="lbl">Design</span></a>
+  <a href="#testing"><span class="dot"></span><span class="lbl">Testing</span></a>
+  <a href="#future"><span class="dot"></span><span class="lbl">Future</span></a>
+</nav>
+
+<!-- HERO -->
+<header class="cs-hero">
+  <div class="cs-hero-eyebrow rv"><a href="index.html#work" style="color:inherit">← Selected Work</a> <span style="opacity:.4">/</span> <span class="num">Case Study 03</span></div>
+  <h1 class="rv d1">YFRESH<span class="hl">.</span></h1>
+  <p class="cs-lede rv d2">A mobile app that helps pet parents prepare <strong>fresh, human-grade, vet-approved meals</strong> for their dogs — built around the realities of allergies, picky eaters, and a budget.</p>
+  <div class="cs-meta rv d3">
+    <div class="cs-meta-cell"><div class="cs-meta-k">Project</div><div class="cs-meta-v">yFresh — iOS App<br><span style="color:var(--muted);font-weight:400;font-size:13px">Fresh pet nutrition</span></div></div>
+    <div class="cs-meta-cell"><div class="cs-meta-k">Role</div><div class="cs-meta-v">UX/UI Designer<br><span style="color:var(--muted);font-weight:400;font-size:13px">End-to-end, solo</span></div></div>
+    <div class="cs-meta-cell"><div class="cs-meta-k">Duration</div><div class="cs-meta-v">Nov 2023 – Jan 2024<br><span style="color:var(--muted);font-weight:400;font-size:13px">~3 months</span></div></div>
+    <div class="cs-meta-cell"><div class="cs-meta-k">Tools</div><div class="cs-meta-v">Figma<br><span style="color:var(--muted);font-weight:400;font-size:13px">Surveys &amp; interviews</span></div></div>
+  </div>
+  <div class="cs-hero-fig rv d4"><img src="assets/img/yf-hero.png" alt="yFresh — recipe, tutorial and ingredients screens" loading="eager"/></div>
+</header>
+
+<!-- 01 OVERVIEW -->
+<section class="cs-sec" id="overview" data-section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">01</span>
+      <div><div class="sec-kicker">Overview</div><h2 class="sec-title">FRESH BY <span class="dim">DESIGN</span></h2></div>
+    </div>
+    <div class="prose col rv d1">
+      <p class="lead">yFresh is a mobile app that gives pet parents human-grade, vet-approved fresh recipes — portioned and tailored to their dog, not pulled off a shelf.</p>
+      <p>Picture a pet parent hunting for a balanced, nutritious meal for a dog with a <strong>sensitive stomach, food allergies, and a picky palate</strong> — on a budget, where the vet's recommendation costs more than they can spend. That gap is where yFresh lives.</p>
+      <p>Processed kibble stays the default not because owners trust it, but because the healthy path is confusing, expensive, and hard to get right at home. The opportunity was to make fresh feeding <strong>simple, affordable, and safe enough to trust.</strong></p>
+    </div>
+    <div class="problem rv">
+      <div class="lbl">The problem, stated once</div>
+      <p>How might we provide healthier, affordable alternatives to everyday processed dog food?</p>
+    </div>
+    <div class="proc rv d1">
+      <div class="proc-step"><div class="proc-n">01</div><div class="proc-t">DEFINE</div></div>
+      <div class="proc-step"><div class="proc-n">02</div><div class="proc-t">RESEARCH</div></div>
+      <div class="proc-step"><div class="proc-n">03</div><div class="proc-t">IDEATE</div></div>
+      <div class="proc-step"><div class="proc-n">04</div><div class="proc-t">DESIGN</div></div>
+      <div class="proc-step"><div class="proc-n">05</div><div class="proc-t">TEST</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 RESEARCH -->
+<section class="cs-sec" id="research" data-section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">02</span>
+      <div><div class="sec-kicker">Research · Discovery</div><h2 class="sec-title">KNOW THE <span class="dim">OWNER</span></h2></div>
+    </div>
+    <div class="prose col rv d1">
+      <p class="lead">Before a single screen, I needed to understand how pet parents actually decide what goes in the bowl — and where fresh feeding loses them.</p>
+    </div>
+    <div class="goal-grid rv d2">
+      <div class="goal"><div class="goal-no">A</div><h4>Target audience</h4><p>Pet owners aged 25–38 — engaged, mobile-first, and invested in their pet's health.</p></div>
+      <div class="goal"><div class="goal-no">B</div><h4>Channel</h4><p>A native iOS app — the lane competitors had largely left open.</p></div>
+      <div class="goal"><div class="goal-no">C</div><h4>Competitors</h4><p>The Farmer's Dog, Spot &amp; Tango, and Ollie — strong brands, mostly desktop-first.</p></div>
+    </div>
+    <h3 style="font-family:var(--f-display);font-size:clamp(28px,3vw,40px);letter-spacing:.03em;margin:64px 0 6px;color:var(--ink)" class="rv">SECONDARY RESEARCH</h3>
+    <div class="prose col rv"><p>I started with a deep dive into U.S. pet owners to understand how they think about feeding. A few findings reframed the problem.</p></div>
+    <div class="stat-grid rv">
+      <div class="stat"><div class="stat-n">86.9<span class="u">M</span></div><div class="stat-k">U.S. homes with a pet — 62–66% of all households</div></div>
+      <div class="stat"><div class="stat-n">#1</div><div class="stat-k">Health &amp; nutrition is the top driver of pet-food choice</div></div>
+      <div class="stat"><div class="stat-n">Kibble</div><div class="stat-k">The default feed — chosen even when owners doubt it's healthy</div></div>
+      <div class="stat"><div class="stat-n">1<span class="u">app</span></div><div class="stat-k">Only one major competitor had shipped a mobile app</div></div>
+    </div>
+    <div class="single-fig zoom-out rv">
+      <div class="fig-frame"><img src="assets/img/yf-secondary.jpg" alt="Pie chart — how owners feed their pets: 75% dry, 15% mixed, 8% wet, raw" loading="lazy"/></div>
+      <div class="fig-cap">Secondary research — dry food stays the default, even when owners doubt it's the healthiest choice.</div>
+    </div>
+    <div class="fig-row r2 rv" style="--rh:420px">
+      <div class="fig-frame"><img src="assets/img/yf-heuristic.jpg" alt="Heuristic analysis write-up" loading="lazy"/></div>
+      <div class="fig-frame"><img src="assets/img/yf-competitive.jpg" alt="Competitive audit — Ollie, The Farmer's Dog, Spot &amp; Tango" loading="lazy"/></div>
+    </div>
+    <div class="fig-cap" style="margin-top:18px">Heuristic analysis &amp; competitive audit — reading competitor strengths and gaps.</div>
+    <h3 style="font-family:var(--f-display);font-size:clamp(28px,3vw,40px);letter-spacing:.03em;margin:64px 0 6px;color:var(--ink)" class="rv">THE INTERVIEWS</h3>
+    <div class="prose col rv"><p>A screener survey narrowed the field to my target audience. Then I sat down with <strong>11 participants, ages 25–38</strong>, to understand the factors that drive their decisions about their pets and pet food.</p></div>
+    <div class="val-grid rv" style="grid-template-columns:repeat(3,1fr)">
+      <figure class="val-card"><div class="val-tag">In their words</div><p class="val-quote">“I buy the healthiest, cheapest food possible.”</p></figure>
+      <figure class="val-card"><div class="val-tag">In their words</div><p class="val-quote">“I'll feed my dog anything as long as it's cooked.”</p></figure>
+      <figure class="val-card"><div class="val-tag">In their words</div><p class="val-quote">“Sometimes it's hard to get my dog to eat — she's extremely picky.”</p></figure>
+      <figure class="val-card"><div class="val-tag">In their words</div><p class="val-quote">“I probably spend more at the vet than I do on food.”</p></figure>
+      <figure class="val-card"><div class="val-tag">In their words</div><p class="val-quote">“My dog has severe allergic reactions to certain foods.”</p></figure>
+      <figure class="val-card"><div class="val-tag">In their words</div><p class="val-quote">“Dog food can be expensive.”</p></figure>
+    </div>
+    <h3 style="font-family:var(--f-display);font-size:clamp(28px,3vw,40px);letter-spacing:.03em;margin:64px 0 6px;color:var(--ink)" class="rv">WHAT I HEARD</h3>
+    <div class="insights rv">
+      <div class="ins"><b>01</b><div><strong style="color:var(--ink);font-weight:600">Budget gates everything.</strong> Cost is a primary filter for which brands owners will even consider.</div></div>
+      <div class="ins"><b>02</b><div><strong style="color:var(--ink);font-weight:600">Picky eaters are everywhere.</strong> Far more common than expected — and refusing food creates real downstream health risks.</div></div>
+      <div class="ins"><b>03</b><div><strong style="color:var(--ink);font-weight:600">Diet drives medical issues.</strong> Allergies, weight regulation, fur loss, skin irritation — all trace back to food.</div></div>
+      <div class="ins"><b>04</b><div><strong style="color:var(--ink);font-weight:600">Owners aren't sure what's safe.</strong> Many simply don't know which foods are and aren't safe for a dog to eat.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 DEFINE -->
+<section class="cs-sec alt" id="define" data-section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">03</span>
+      <div><div class="sec-kicker">Define · Synthesis</div><h2 class="sec-title">DATA INTO <span class="dim">DIRECTION</span></h2></div>
+    </div>
+    <div class="prose col rv d1">
+      <p class="lead">I mapped everything I heard into patterns — starting with an affinity map, then empathy maps and personas to keep real people at the center of every later decision.</p>
+    </div>
+    <div class="single-fig zoom-in rv">
+      <div class="fig-frame"><img src="assets/img/yf-affinity.jpg" alt="Affinity map — clustered interview notes" loading="lazy"/></div>
+      <div class="fig-cap">Affinity mapping — clustering interview data into themes.</div>
+    </div>
+    <div class="fig-row r2 rv" style="--rh:340px">
+      <div class="fig-frame"><img src="assets/img/yf-empathy-1.jpg" alt="Empathy map 1" loading="lazy"/></div>
+      <div class="fig-frame"><img src="assets/img/yf-empathy-2.jpg" alt="Empathy map 2" loading="lazy"/></div>
+    </div>
+    <div class="fig-cap" style="margin-top:18px;margin-bottom:48px">Empathy maps — organizing what each participant says, thinks, does, and feels.</div>
+    <div class="fig-row r2 rv" style="--rh:360px">
+      <div class="fig-frame"><img src="assets/img/yf-persona-1.jpg" alt="Persona — Cautious Kerrie" loading="lazy"/></div>
+      <div class="fig-frame"><img src="assets/img/yf-persona-2.jpg" alt="Persona — Dave the Dog Dad" loading="lazy"/></div>
+    </div>
+    <div class="fig-cap" style="margin-top:18px">Two personas — keeping real people at the center of every later decision.</div>
+    <h3 style="font-family:var(--f-display);font-size:clamp(28px,3vw,40px);letter-spacing:.03em;margin:64px 0 6px;color:var(--ink)" class="rv">HOW MIGHT WE</h3>
+    <div class="prose col rv"><p>The patterns became a set of How-Might-We questions — each paired with the design move it pointed to.</p></div>
+    <div class="hmw rv"><div class="hmw-head"><span class="hmw-no">1</span><p class="hmw-q"><strong>How might we</strong> increase awareness and improve the experience of the product's offerings?</p></div><p class="hmw-body"><strong>The move —</strong> lead with vet-approved meal plans and recipes that foreground real nutritional benefits.</p></div>
+    <div class="hmw rv"><div class="hmw-head"><span class="hmw-no">2</span><p class="hmw-q"><strong>How might we</strong> make users feel more confident in the ingredients they feed their pets?</p></div><p class="hmw-body"><strong>The move —</strong> tutorial videos and directions broken into simple, followable steps.</p></div>
+    <div class="hmw rv"><div class="hmw-head"><span class="hmw-no">3</span><p class="hmw-q"><strong>How might we</strong> efficiently support users during meal preparation?</p></div><p class="hmw-body"><strong>The move —</strong> keep it easy, clear and informative — prioritize testing and sweat the details.</p></div>
+    <div class="hmw rv"><div class="hmw-head"><span class="hmw-no">4</span><p class="hmw-q"><strong>How might we</strong> make users feel confident they have all the information they need?</p></div><p class="hmw-body"><strong>The move —</strong> recipes built from fresh ingredients you can buy at any grocery store.</p></div>
+    <div class="hmw rv"><div class="hmw-head"><span class="hmw-no">5</span><p class="hmw-q"><strong>How might we</strong> make the product more affordable than the competition?</p></div><p class="hmw-body"><strong>The move —</strong> prioritize consistency and make the product memorable so it earns a daily habit.</p></div>
+  </div>
+</section>
+
+<!-- 04 IDEATE -->
+<section class="cs-sec" id="ideate" data-section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">04</span>
+      <div><div class="sec-kicker">Ideate · Architecture</div><h2 class="sec-title">MAP THE <span class="dim">FLOW</span></h2></div>
+    </div>
+    <div class="prose col rv d1">
+      <p class="lead">With the problem framed and solutions in hand, I shaped how the product would be organized — turning research into a structure users could move through without thinking.</p>
+      <p>I worked out the information architecture, then committed it to a <strong>sitemap</strong> and the core <strong>user flow</strong> that every screen would later hang from.</p>
+    </div>
+    <div class="fig-row r2 rv" style="--rh:380px">
+      <div class="fig-frame"><img src="assets/img/yf-sitemap.jpg" alt="Sitemap" loading="lazy"/></div>
+      <div class="fig-frame"><img src="assets/img/yf-userflow.jpg" alt="User flow" loading="lazy"/></div>
+    </div>
+    <div class="fig-cap" style="margin-top:18px">Sitemap and user flow — the backbone of the app.</div>
+  </div>
+</section>
+
+<!-- 05 DESIGN -->
+<section class="cs-sec alt" id="design" data-section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">05</span>
+      <div><div class="sec-kicker">Design · Craft</div><h2 class="sec-title">BRING IT TO <span class="dim">LIFE</span></h2></div>
+    </div>
+    <div class="prose col rv d1">
+      <p class="lead">Guided by the user flow, I sketched the main screens, then moved into low-fidelity wireframes and prototypes for the first usability study.</p>
+    </div>
+    <div class="fig-row r2 rv" style="--rh:360px">
+      <div class="fig-frame"><img src="assets/img/yf-sketches.jpg" alt="Paper sketches" loading="lazy"/></div>
+      <div class="fig-frame"><img src="assets/img/yf-wireframe-1.jpg" alt="Low-fidelity wireframes" loading="lazy"/></div>
+    </div>
+    <div class="fig-cap" style="margin-top:18px">Paper sketches → low-fidelity wireframes and a clickable prototype.</div>
+    <h3 style="font-family:var(--f-display);font-size:clamp(28px,3vw,40px);letter-spacing:.03em;margin:64px 0 6px;color:var(--ink)" class="rv">STYLE GUIDE &amp; ACCESSIBILITY</h3>
+    <div class="prose col rv"><p>The brand started in orange. Testing the palette for contrast told a different story — so I rebuilt the colors to clear WCAG AA, and documented the whole thing as a reusable system.</p></div>
+    <div class="a11y rv">
+      <div class="a11y-card"><div class="a11y-sw"><span style="background:#E8852C"></span><span style="background:#1F9D5C"></span></div><h4>Orange → accessible green</h4><p>Every primary button moved from the brand's orange to a green that cleared contrast — and suited a fresh-food product.</p></div>
+      <div class="a11y-card"><div class="a11y-sw"><span style="background:#000000"></span><span style="background:#1E1E1E"></span></div><h4>Softer ink</h4><p>Pure <code>#000</code> on <code>#fff</code> strains the eye. I dropped black to <code>#1E1E1E</code> to stay above guidelines with less fatigue.</p></div>
+      <div class="a11y-card"><div class="a11y-sw"><span style="background:#FFFFFF"></span><span style="background:#F5F5F5"></span></div><h4>Warmer white</h4><p>Pure <code>#fff</code> was swapped for <code>#f5f5f5</code>, easing harsh contrast while holding AA.</p></div>
+    </div>
+    <figure class="fig rv">
+      <div class="fig-row r2" style="--rh:360px;margin:0">
+        <div class="fig-frame"><img src="assets/img/yf-styleguide.jpg" alt="yFresh style guide" loading="lazy"/></div>
+        <div class="fig-frame"><img src="assets/img/yf-a11y.jpg" alt="Accessibility contrast chart" loading="lazy"/></div>
+      </div>
+      <figcaption class="fig-cap" style="margin-top:18px">yFresh style guide and accessibility audit — color, type, and components, checked to WCAG AA.</figcaption>
+    </figure>
+    <h3 style="font-family:var(--f-display);font-size:clamp(28px,3vw,40px);letter-spacing:.03em;margin:64px 0 6px;color:var(--ink)" class="rv">THE HI-FI DESIGNS</h3>
+    <div class="prose col rv"><p>With the system in place, I built the high-fidelity screens and a working Figma prototype to feel how the app would actually move.</p></div>
+    <div class="fig-row r3 rv phone-fig" style="--rh:460px">
+      <div class="fig-frame"><img src="assets/img/yf-hifi-chicken.png" alt="Hi-fi — y-Chicken recipe" loading="lazy"/></div>
+      <div class="fig-frame"><img src="assets/img/yf-hifi-beef.png" alt="Hi-fi — y-Beef recipe" loading="lazy"/></div>
+      <div class="fig-frame"><img src="assets/img/yf-hifi-fish.png" alt="Hi-fi — y-Fish recipe" loading="lazy"/></div>
+    </div>
+    <div class="fig-cap" style="margin-top:18px">High-fidelity recipe screens — personalized, vet-informed meal recommendations.</div>
+  </div>
+</section>
+
+<!-- 06 TESTING -->
+<section class="cs-sec" id="testing" data-section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">06</span>
+      <div><div class="sec-kicker">Testing · Iteration</div><h2 class="sec-title">TEST, THEN <span class="dim">SHARPEN</span></h2></div>
+    </div>
+    <div class="prose col rv d1">
+      <p class="lead">I ran several rounds of usability testing with the original group of participants. Three findings reshaped the product.</p>
+    </div>
+    <div class="ba rv">
+      <div class="ba-head"><span class="ba-no">01</span><div class="ba-t">Customize the meals deeper</div></div>
+      <p class="ba-b">Testing showed the quiz didn't capture enough about a pet's health to tailor meals well. I <strong>added screens to the pet quiz</strong> to gather conditions and needs — so recommendations could be genuinely customized to the animal.</p>
+      <div class="ba-pair phone-fig" style="--rh:430px">
+        <div class="ba-col"><div class="pl">Added · coat, protein &amp; preferences</div><div class="fig-frame"><img src="assets/img/yf-quiz-1.png" alt="Pet quiz — coat condition and protein preference" loading="lazy"/></div></div>
+        <div class="ba-col"><div class="pl">Added · health conditions</div><div class="fig-frame"><img src="assets/img/yf-quiz-2.png" alt="Pet quiz — health conditions" loading="lazy"/></div></div>
+      </div>
+    </div>
+    <div class="ba rv">
+      <div class="ba-head"><span class="ba-no">02</span><div class="ba-t">Give people choices</div></div>
+      <p class="ba-b">The first design served a <strong>single</strong> meal recommendation once the quiz was complete. Testing was clear: users wanted options. I shifted from one suggestion to a <strong>variety to choose from</strong>.</p>
+      <div class="ba-pair phone-fig" style="--rh:430px;grid-template-columns:1fr 2.5fr">
+        <div class="ba-col"><div class="pl">Before · one suggestion</div><div class="fig-frame" style="justify-content:flex-end"><img src="assets/img/yf-single.png" alt="Before — a single meal recommendation" loading="lazy"/></div></div>
+        <div class="ba-col"><div class="pl">After · a variety to choose</div><div class="fig-frame"><img src="assets/img/yf-variety.png" alt="After — a variety of recommendations" loading="lazy"/></div></div>
+      </div>
+    </div>
+    <div class="ba rv">
+      <div class="ba-head"><span class="ba-no">03</span><div class="ba-t">Cut the dead steps</div></div>
+      <p class="ba-b">The main user flow carried unnecessary steps. To give users the quickest path to the goal, I <strong>combined several screens into one scrollable view</strong> — fewer taps, same information.</p>
+      <div class="ba-pair phone-fig" style="--rh:560px">
+        <div class="ba-col"><div class="pl">Before · extra steps</div><div class="fig-frame"><img src="assets/img/yf-cut-before.gif" alt="Before — multi-step recommendation flow (screen recording)" loading="lazy"/></div></div>
+        <div class="ba-col"><div class="pl">After · one scrollable view</div><div class="fig-frame"><img src="assets/img/yf-cut-after.gif" alt="After — one scrollable view (screen recording)" loading="lazy"/></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 FUTURE -->
+<section class="cs-sec alt" id="future" data-section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">07</span>
+      <div><div class="sec-kicker">Future · Next steps</div><h2 class="sec-title">WHERE IT <span class="dim">GOES</span></h2></div>
+    </div>
+    <div class="prose col rv d1">
+      <p class="lead">One question kept surfacing: how do you bring people back when there's no urgency to open the app? I weighed two directions — each with a real tradeoff worth testing before committing.</p>
+    </div>
+    <div class="need-grid rv d2">
+      <div class="need usr"><div class="need-tag">Option A · Push notifications</div><p><strong>Pro —</strong> timely reminders to make meals, buy ingredients, and restock.<br><br><strong style="color:var(--muted)">Con —</strong> can nag, and risks the opposite effect.</p></div>
+      <div class="need usr"><div class="need-tag">Option B · Planning mode</div><p><strong>Pro —</strong> helps users plan meals around their schedule and availability.<br><br><strong style="color:var(--muted)">Con —</strong> bulk meal-preppers may rarely need it.</p></div>
+    </div>
+    <div class="fig-row r3 rv phone-fig" style="--rh:460px;margin-top:24px">
+      <div class="fig-frame"><img src="assets/img/yf-push.png" alt="Push notifications concept" loading="lazy"/></div>
+      <div class="fig-frame"><img src="assets/img/yf-planning.png" alt="Planning mode — agenda view" loading="lazy"/></div>
+      <div class="fig-frame"><img src="assets/img/yf-planning-2.png" alt="Planning mode — calendar view" loading="lazy"/></div>
+    </div>
+    <div class="fig-cap" style="margin-top:18px">Two directions explored — push reminders (A) and a planning calendar (B).</div>
+    <div class="take-grid rv">
+      <div class="take"><div class="take-tag">Keep personalizing</div><h4>REVIEWS</h4><p>New vet-approved ingredients surface every year. <strong>User reviews and preferences</strong> let each plan keep adapting to the pet.</p></div>
+      <div class="take"><div class="take-tag">What's next</div><h4>BUILD OUT</h4><p>Next I'd focus on the <strong>shopping list and profile mechanics</strong> — the connective tissue between a recipe and a real grocery run.</p></div>
+      <div class="take"><div class="take-tag">The principle</div><h4>USER AT THE CENTER</h4><p>Transparency comes from understanding real needs and <strong>balancing them against the business</strong> with clear, tested design.</p></div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- NEXT / CTA -->
+<section class="cs-next" data-cta-zone>
+  <div class="s-tag rv">Next</div>
+  <h2 class="rv d1">LET'S BUILD<br>SOMETHING <span class="hl">GREAT</span>.</h2>
+  <p class="rv d2">Open to full-time roles, freelance projects, and conversations about design that moves the needle.</p>
+  <div class="cs-next-actions rv d3">
+    <a href="https://www.linkedin.com/in/keithdb" target="_blank" rel="noopener" class="btn btn-light">Start a Conversation ↗</a>
+    <a href="index.html#work" class="btn btn-outline">← All Work</a>
+  </div>
+</section>
+
+<footer>
+  <span class="f-copy">© 2025 Keith Brooks · All rights reserved</span>
+  <span class="f-tag" aria-hidden="true">yFresh · Case Study 03</span>
+</footer>
+
+<script src="assets/ds.js"></script>
+</body>
+</html>
