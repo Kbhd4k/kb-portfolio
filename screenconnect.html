@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ScreenConnect — Case Study · Keith Brooks</title>
+<meta name="description" content="ScreenConnect PAM dashboard redesign for ConnectWise — clearer permissions, WCAG-compliant light and dark themes, 69% more PAM trials and 2× MRR. A case study by Keith Brooks, Product Designer."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/ds.css"/>
+<!-- <script src="assets/gate.js"></script> -->
+<style>
+/* ============================================================
+   MARKETSQUARE CASE STUDY — page styles
+   (Reusable template: duplicate, swap copy + image URLs.)
+   ============================================================ */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad-x);}
+.col{max-width:760px;}
+
+/* Back link under nav */
+.cs-back{position:fixed;top:0;left:0;height:var(--nav-h);display:flex;align-items:center;}
+
+/* ---------- HERO ---------- */
+.cs-hero{padding:140px var(--pad-x) 0;max-width:var(--maxw);margin:0 auto;}
+.cs-hero-eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;}
+.cs-hero-eyebrow .num{color:var(--accent-d);}
+.cs-hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--accent-d);}
+.cs-hero h1{font-family:var(--f-display);font-size:clamp(72px,13vw,200px);line-height:.86;letter-spacing:.02em;color:var(--ink);margin-bottom:24px;}
+.cs-hero h1 .hl{color:var(--accent-d);}
+.cs-lede{font-family:var(--f-body);font-size:clamp(19px,2.1vw,26px);line-height:1.5;font-weight:300;color:var(--body);max-width:780px;margin-bottom:48px;}
+.cs-lede strong{font-weight:600;color:var(--ink);}
+
+.cs-meta{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.cs-meta-cell{padding:22px 24px;border-right:1px solid var(--border);}
+.cs-meta-cell:first-child{padding-left:0;}
+.cs-meta-cell:last-child{border-right:none;}
+.cs-meta-k{font-family:var(--f-mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.cs-meta-v{font-family:var(--f-body);font-size:15px;font-weight:600;color:var(--ink);line-height:1.35;}
+
+.cs-hero-fig{margin:56px 0 0;border-radius:20px;overflow:hidden;border:1px solid var(--border);background:var(--bg2);}
+.cs-hero-fig img{width:100%;height:auto;display:block;}
+
+/* ---------- SECTION SHELL ---------- */
+.cs-sec{padding:104px 0;position:relative;scroll-margin-top:84px;}
+.cs-sec.alt{background:var(--bg2);}
+.sec-head{display:flex;gap:28px;align-items:flex-start;margin-bottom:44px;}
+.sec-no{font-family:var(--f-mono);font-size:13px;font-weight:500;color:var(--accent-d);letter-spacing:.1em;padding-top:10px;flex-shrink:0;}
+.sec-title{font-family:var(--f-display);font-size:clamp(40px,5.4vw,76px);line-height:.92;letter-spacing:.02em;color:var(--ink);}
+.sec-title .dim{color:var(--dim);}
+.sec-kicker{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.sec-kicker::before{content:'';width:16px;height:1px;background:var(--accent-d);}
+
+.prose p{font-family:var(--f-body);font-size:17.5px;line-height:1.74;color:var(--body);font-weight:300;margin-bottom:22px;max-width:760px;}
+.prose p strong{font-weight:600;color:var(--ink);}
+.prose p em{font-style:italic;}
+.lead{font-size:21px!important;line-height:1.6!important;color:var(--ink)!important;font-weight:400!important;}
+
+/* ---------- PULL QUOTE ---------- */
+.pull{margin:56px 0;padding:0 0 0 28px;border-left:3px solid var(--accent-d);max-width:840px;}
+.pull p{font-family:var(--f-display);font-size:clamp(28px,4vw,52px);line-height:1.04;letter-spacing:.02em;color:var(--ink);}
+.pull .hl{color:var(--accent-d);}
+
+/* ---------- GOAL / NUMBERED LIST ---------- */
+.goal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;}
+.goal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px 28px;transition:transform .35s var(--ease-expo),border-color .3s;}
+.goal:hover{transform:translateY(-4px);border-color:var(--accent-d);}
+.goal-no{font-family:var(--f-display);font-size:46px;line-height:1;color:var(--accent-d);margin-bottom:16px;letter-spacing:.02em;}
+.goal h4{font-family:var(--f-body);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;letter-spacing:-.01em;}
+.goal p{font-family:var(--f-body);font-size:14px;line-height:1.6;color:var(--muted);font-weight:300;}
+
+/* ---------- TWO-CARD (business / user need) ---------- */
+.need-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:40px 0;}
+.need{border-radius:16px;padding:34px;border:1px solid var(--border);}
+.need.biz{background:var(--ink);color:var(--bg);}
+.need.usr{background:var(--card);}
+.need-tag{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;}
+.need.biz .need-tag{color:rgba(255,255,255,.5);}
+.need.usr .need-tag{color:var(--accent-d);}
+.need p{font-family:var(--f-body);font-size:17px;line-height:1.6;font-weight:300;}
+.need.biz p{color:rgba(255,255,255,.92);}
+.need.usr p{color:var(--body);}
+.need p strong{font-weight:600;}
+.need.usr p strong{color:var(--ink);}
+
+/* ---------- PROBLEM STATEMENT ---------- */
+.problem{margin:48px 0 8px;background:var(--accent-d);border-radius:20px;padding:clamp(40px,5vw,68px);color:#fff;}
+.problem .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:22px;}
+.problem p{font-family:var(--f-display);font-size:clamp(28px,3.8vw,50px);line-height:1.04;letter-spacing:.02em;color:#fff;}
+
+/* ---------- FRICTION CARDS ---------- */
+.friction-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;}
+.fr{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px 28px;}
+.fr-no{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:var(--accent-d);margin-bottom:18px;}
+.fr h4{font-family:var(--f-display);font-size:30px;letter-spacing:.03em;color:var(--ink);margin-bottom:12px;}
+.fr p{font-family:var(--f-body);font-size:14px;line-height:1.62;color:var(--muted);font-weight:300;}
+
+/* ---------- FIGURES ---------- */
+.fig{margin:44px 0;}
+.fig-frame{border-radius:18px;overflow:hidden;border:1px solid var(--border);background:var(--bg2);}
+.fig-frame img{width:100%;height:auto;display:block;}
+.fig-cap{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--muted);margin-top:14px;display:flex;gap:10px;align-items:baseline;}
+.fig-cap::before{content:'';width:14px;height:1px;background:var(--accent-d);flex-shrink:0;position:relative;top:6px;}
+.fig-row{display:grid;gap:16px;margin:44px 0;}
+.fig-row.r3{grid-template-columns:repeat(3,1fr);}
+.fig-row.r2{grid-template-columns:repeat(2,1fr);}
+.fig-row .fig-frame img{width:100%;height:auto;}
+
+/* VALIDATION CARDS (mirror reflection cards) */
+.val-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:44px 0 0;}
+.val-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px 30px;display:flex;flex-direction:column;gap:16px;margin:0;min-height:188px;transition:transform .35s var(--ease-expo),border-color .3s;}
+.val-card:hover{transform:translateY(-4px);border-color:var(--accent-d);}
+.val-tag{font-family:var(--f-mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-d);}
+.val-quote{font-family:var(--f-body);font-size:19px;line-height:1.5;color:var(--ink);font-weight:300;letter-spacing:-.005em;}
+.val-quote strong{font-weight:600;color:var(--accent-d);}
+@media(max-width:700px){.val-grid{grid-template-columns:1fr;}}
+
+/* DESIGN SYSTEM BOARD (auto-scaled live artifact) */
+.dsboard-frame{position:relative;aspect-ratio:1600/1080;overflow:hidden;padding:0;}
+.dsboard-scale{position:absolute;top:0;left:0;width:1600px;height:1080px;transform-origin:top left;}
+.dsboard-scale iframe{width:1600px;height:1080px;border:0;display:block;background:#FBFAFD;}
+
+/* SOLUTION FIGS — sized to match iteration thumbnails */
+.sol-figs{display:flex;gap:16px;flex-wrap:wrap;}
+.sol-figs .fig{width:296px;max-width:100%;margin:0;flex:0 0 auto;}
+/* PHONE SCREENSHOTS — drop the frame outline, slightly smaller */
+.sol-figs .fig-frame,.fig-row.r3 .fig-frame{border:none;background:transparent;}
+.fig-row.r3 .fig-frame{max-width:272px;margin:0 auto;}
+
+/* ---------- HMW SOLUTION BLOCKS ---------- */
+.hmw{margin:64px 0;}
+.hmw-head{display:flex;gap:24px;align-items:flex-start;margin-bottom:14px;}
+.hmw-no{font-family:var(--f-display);font-size:clamp(48px,7vw,92px);line-height:.8;color:var(--accent-d);letter-spacing:.02em;flex-shrink:0;}
+.hmw-q{font-family:var(--f-body);font-size:clamp(20px,2.4vw,28px);line-height:1.32;font-weight:300;color:var(--ink);padding-top:6px;}
+.hmw-q strong{font-weight:600;}
+.hmw-body{font-family:var(--f-body);font-size:16px;line-height:1.7;color:var(--muted);font-weight:300;max-width:720px;margin:8px 0 0 0;padding-left:0;}
+.hmw-body strong{color:var(--ink);font-weight:600;}
+
+/* ---------- METRICS ---------- */
+.results{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-left:1px solid var(--border);}
+.res{padding:48px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.res::after{content:'';position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--accent-d);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease-expo);}
+.res:hover::after{transform:scaleX(1);}
+.res-num{font-family:var(--f-display);font-size:clamp(54px,6vw,88px);line-height:.86;letter-spacing:.02em;color:var(--ink);margin-bottom:14px;}
+.res-k{font-family:var(--f-body);font-size:14px;line-height:1.5;color:var(--body);font-weight:400;}
+.res-sub{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px;}
+
+/* ---------- TAKEAWAYS ---------- */
+.take-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;}
+.take{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:34px 30px;}
+.take-tag{font-family:var(--f-mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-d);margin-bottom:18px;}
+.take h4{font-family:var(--f-display);font-size:30px;letter-spacing:.03em;color:var(--ink);margin-bottom:14px;line-height:1;}
+.take p{font-family:var(--f-body);font-size:14.5px;line-height:1.66;color:var(--muted);font-weight:300;}
+.take p strong{color:var(--ink);font-weight:600;}
+
+/* ---------- NEXT / CTA ---------- */
+.cs-next{background:var(--ink);color:var(--bg);padding:clamp(64px,9vw,128px) var(--pad-x);text-align:center;}
+.cs-next .s-tag{justify-content:center;color:rgba(255,255,255,.55);}
+.cs-next .s-tag::before{background:var(--accent-d);}
+.cs-next h2{font-family:var(--f-display);font-size:clamp(48px,8vw,108px);line-height:.92;letter-spacing:.03em;color:var(--bg);margin:14px 0 14px;}
+.cs-next h2 .hl{color:var(--accent-d);}
+.cs-next p{font-family:var(--f-body);font-size:17px;line-height:1.6;color:rgba(240,240,240,.7);font-weight:300;max-width:520px;margin:0 auto 40px;}
+.cs-next-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.cs-next .btn-light{background:var(--bg);color:var(--ink);}
+.cs-next .btn-light:hover{background:var(--accent-d);color:#fff;transform:translateY(-2px);}
+.cs-next .btn-outline{background:transparent;color:var(--bg);border:1px solid rgba(255,255,255,.25);}
+.cs-next .btn-outline:hover{border-color:#fff;transform:translateY(-2px);}
+
+/* ---------- STICKY SECTION RAIL ---------- */
+.rail{position:fixed;top:50%;left:24px;transform:translateY(-50%);z-index:500;display:flex;flex-direction:column;gap:3px;}
+.rail a{display:flex;align-items:center;gap:11px;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);padding:5px 0;transition:color .25s;cursor:none;}
+.rail a .dot{width:7px;height:7px;border-radius:50%;border:1px solid var(--dim);transition:all .25s;flex-shrink:0;}
+.rail a .lbl{opacity:0;transform:translateX(-4px);transition:opacity .25s,transform .25s;white-space:nowrap;}
+.rail:hover a .lbl{opacity:1;transform:translateX(0);}
+.rail a:hover{color:var(--ink);}
+.rail a.active{color:var(--accent-d);}
+.rail a.active .dot{background:var(--accent-d);border-color:var(--accent-d);transform:scale(1.25);}
+.rail a.active .lbl{opacity:1;transform:translateX(0);}
+@media(max-width:1320px){.rail{display:none;}}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .goal-grid,.friction-grid,.take-grid{grid-template-columns:1fr;}
+  .need-grid{grid-template-columns:1fr;}
+  .cs-meta{grid-template-columns:1fr 1fr;}
+  .cs-meta-cell:nth-child(2){border-right:none;}
+  .cs-meta-cell:nth-child(3),.cs-meta-cell:nth-child(4){border-top:1px solid var(--border);}
+  .results{grid-template-columns:1fr 1fr;}
+  .fig-row.r3{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:560px){
+  .cs-meta,.results{grid-template-columns:1fr;}
+  .cs-meta-cell{border-right:none;border-top:1px solid var(--border);}
+  .cs-meta-cell:first-child{border-top:none;}
+  .fig-row.r3,.fig-row.r2{grid-template-columns:1fr;}
+  .sec-head{gap:16px;}
+  .hmw-head{flex-direction:column;gap:8px;}
+}
+
+/* ---------- SCREENCONNECT additions ---------- */
+.cs-hero-fig.bare{border:none;background:transparent;border-radius:0;overflow:visible;}
+.checklist{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px;}
+.check{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px 24px;display:flex;flex-direction:column;gap:14px;}
+.check-no{font-family:var(--f-display);font-size:40px;line-height:1;color:var(--accent-d);letter-spacing:.02em;}
+.check p{font-family:var(--f-body);font-size:16px;line-height:1.5;color:var(--ink);font-weight:500;}
+.method{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 8px;}
+.method span{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);border:1px solid var(--border);background:var(--card);padding:10px 16px;border-radius:100px;}
+.approach{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;}
+.ap{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px 28px;}
+.ap-tag{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);margin-bottom:14px;}
+.ap h4{font-family:var(--f-display);font-size:30px;letter-spacing:.03em;color:var(--ink);margin-bottom:16px;line-height:1;}
+.ap ul{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.ap li{font-family:var(--f-body);font-size:14.5px;line-height:1.6;color:var(--muted);font-weight:300;padding-left:18px;position:relative;}
+.ap li::before{content:'';position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--accent-d);}
+.ba-lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 14px;display:flex;align-items:center;gap:10px;}
+.ba-lbl::before{content:'';width:16px;height:1px;background:var(--accent-d);}
+.ba-lbl.after{color:var(--accent-d);}
+@media(max-width:900px){.checklist,.approach{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div id="scroll-prog" aria-hidden="true"></div>
+<div id="_cur" aria-hidden="true"></div>
+<div id="_ring" aria-hidden="true"></div>
+<button id="back-top" aria-label="Back to top" title="Back to top">↑</button>
+
+<!-- NAV -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo" aria-label="Keith Brooks — home">KEITH<span>.</span></a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html#work">Projects</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#testimonials">Kind Words</a></li>
+    <li><a href="https://docs.google.com/document/d/1cGZoGCiG8sLohpiwcJd-tVt59pux1qdXXD4wqP0VGAY/edit?tab=t.0" target="_blank" rel="noopener">Resume</a></li>
+  </ul>
+  <div class="tt-wrap">
+    <label class="tt-switch" aria-label="Toggle light / dark mode">
+      <input type="checkbox" id="tt-cb" autocomplete="off"/>
+      <div class="tt-track"></div>
+      <div class="tt-knob">
+        <svg class="tt-icon tt-sun" viewBox="0 0 24 24" fill="none" stroke="var(--tt-icon)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.9" y1="4.9" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="19.1" y2="19.1"/><line x1="4.9" y1="19.1" x2="7.1" y2="16.9"/><line x1="16.9" y1="7.1" x2="19.1" y2="4.9"/></svg>
+        <svg class="tt-icon tt-moon" viewBox="0 0 24 24" fill="none" stroke="var(--tt-icon)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </div>
+    </label>
+    <a id="nav-cta" href="index.html#connect">Let's Connect</a>
+  </div>
+</nav>
+
+<!-- SECTION RAIL -->
+<nav class="rail" data-section-nav aria-label="Section navigation">
+  <a href="#overview"><span class="dot"></span><span class="lbl">Overview</span></a>
+  <a href="#research"><span class="dot"></span><span class="lbl">Research</span></a>
+  <a href="#approach"><span class="dot"></span><span class="lbl">Approach</span></a>
+  <a href="#constraints"><span class="dot"></span><span class="lbl">Constraints</span></a>
+  <a href="#impact"><span class="dot"></span><span class="lbl">Impact</span></a>
+  <a href="#before-after"><span class="dot"></span><span class="lbl">Before / After</span></a>
+</nav>
+
+<!-- HERO -->
+<header class="cs-hero">
+  <div class="cs-hero-eyebrow rv"><a href="index.html#work" style="color:inherit">← Selected Work</a> <span style="opacity:.4">/</span> <span class="num">Case Study 01</span></div>
+  <h1 class="rv d1">SCREEN<br>CONNECT<span class="hl">.</span></h1>
+  <p class="cs-lede rv d2">A secure remote-desktop platform IT professionals, help desks, and MSPs use to troubleshoot, manage, and access computers and mobile devices from afar. I redesigned its <strong>Privileged Access Management dashboard</strong> during a rebrand.</p>
+  <div class="cs-meta rv d3">
+    <div class="cs-meta-cell"><div class="cs-meta-k">Project</div><div class="cs-meta-v">ScreenConnect Dashboard<br><span style="color:var(--muted);font-weight:400;font-size:13px">ConnectWise</span></div></div>
+    <div class="cs-meta-cell"><div class="cs-meta-k">Role</div><div class="cs-meta-v">Product Designer<br><span style="color:var(--muted);font-weight:400;font-size:13px">End-to-end</span></div></div>
+    <div class="cs-meta-cell"><div class="cs-meta-k">Duration</div><div class="cs-meta-v">2025<br><span style="color:var(--muted);font-weight:400;font-size:13px">Q2 – Q3</span></div></div>
+    <div class="cs-meta-cell"><div class="cs-meta-k">Scope</div><div class="cs-meta-v">End-to-end design<br><span style="color:var(--muted);font-weight:400;font-size:13px">+ Design system</span></div></div>
+  </div>
+  <div class="cs-hero-fig bare rv d4"><img src="assets/img/sc-hero.png" alt="ScreenConnect PAM dashboard — dark and light themes" loading="eager"/></div>
+</header>
+
+<!-- 01 OVERVIEW -->
+<section class="cs-sec" id="overview" data-section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">01</span>
+      <div><div class="sec-kicker">Overview</div><h2 class="sec-title">A REBRAND, <span class="dim">A REDESIGN</span></h2></div>
+    </div>
+    <div class="prose col rv d1">
+      <p class="lead">ScreenConnect was going through a rebrand, and its product services and dashboard were due for a redesign to match.</p>
+      <p>The existing experience wasn't as effective as it could be at <strong>giving technicians permissions</strong>. It lacked clarity, drifted from the new brand, and fell short of the modern design users expect. The goal was an experience that:</p>
+    </div>
+    <div class="checklist rv d2">
+      <div class="check"><div class="check-no">01</div><p>Monitored permissions clearly</p></div>
+      <div class="check"><div class="check-no">02</div><p>Made everyday use easier</p></div>
+      <div class="check"><div class="check-no">03</div><p>Met modern design standards</p></div>
+    </div>
+    <div class="problem rv">
+      <div class="lbl">The challenge</div>
+      <p>Redesign the product without losing the brand's new identity — and keep customization alive for users.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 RESEARCH -->
+<section class="cs-sec alt" id="research" data-section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">02</span>
+      <div><div class="sec-kicker">Research · Insights</div><h2 class="sec-title">SOLVE THE <span class="dim">RIGHT PROBLEMS</span></h2></div>
+    </div>
+    <div class="prose col rv d1">
+      <p class="lead">To make sure the redesign solved the right problems, I started by analyzing traffic data to the platform — then layered in qualitative evidence.</p>
+    </div>
+    <div class="method rv d2"><span>Internal interviews</span><span>Design audit</span><span>Ticket reviews</span><span>User survey</span><span>User interviews</span></div>
+    <div class="prose col rv" style="margin-top:36px"><p>From there, three findings shaped the work:</p></div>
+    <div class="friction-grid rv">
+      <div class="fr"><div class="fr-no">01 / Accessibility</div><h4>WCAG GAPS</h4><p>Major inconsistencies, from color contrast to keyboard navigation.</p></div>
+      <div class="fr"><div class="fr-no">02 / System</div><h4>UNSTABLE SYSTEM</h4><p>The design system underneath the dashboard was inconsistent and hard to build on.</p></div>
+      <div class="fr"><div class="fr-no">03 / Security</div><h4>FRAUD RISK</h4><p>Unclear permission states opened the door to potential fraud risks.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 APPROACH -->
+<section class="cs-sec" id="approach" data-section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">03</span>
+      <div><div class="sec-kicker">Design approach</div><h2 class="sec-title">THREE <span class="dim">LEVERS</span></h2></div>
+    </div>
+    <div class="approach rv d1">
+      <div class="ap"><div class="ap-tag">Information architecture</div><h4>COMMON FIRST</h4><ul><li>Organized the dashboard so the most common links are instantly visible.</li><li>Kept secondary topics accessible without overwhelming the user.</li></ul></div>
+      <div class="ap"><div class="ap-tag">WCAG</div><h4>ACCESSIBLE BY DEFAULT</h4><ul><li>Reduced customization options and introduced a light and dark theme.</li><li>Organized keyboard navigation so every interactive element in each column can be reached.</li></ul></div>
+      <div class="ap"><div class="ap-tag">Visual design</div><h4>ONE CONSISTENT UI</h4><ul><li>Created interactive graphs and charts.</li><li>Built a consistent look across dashboard and UI.</li><li>Gave every interactive element a consistent design and active state.</li><li>Used negative space for a more uniform layout.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 CONSTRAINTS -->
+<section class="cs-sec alt" id="constraints" data-section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">04</span>
+      <div><div class="sec-kicker">Constraints</div><h2 class="sec-title">WORKING <span class="dim">WITHIN LIMITS</span></h2></div>
+    </div>
+    <div class="need-grid rv d1">
+      <div class="need usr"><div class="need-tag">Customization</div><p>Balancing <strong>brand expression</strong> with a clean, functional layout that wouldn't overwhelm users.</p></div>
+      <div class="need usr"><div class="need-tag">Design system</div><p>Working within <strong>existing components</strong> to keep consistency across ScreenConnect's digital ecosystem.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 IMPACT -->
+<section class="cs-sec" id="impact" data-section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">05</span>
+      <div><div class="sec-kicker">Outcome · Impact</div><h2 class="sec-title">WHAT IT <span class="dim">MOVED</span></h2></div>
+    </div>
+    <div class="results rv d1" style="grid-template-columns:repeat(2,1fr)">
+      <div class="res"><div class="res-num" data-pre="+" data-val="69" data-suf="%">+69%</div><div class="res-k">PAM (Privileged Access Management) trials</div><div class="res-sub">The month after release</div></div>
+      <div class="res"><div class="res-num" data-val="2" data-suf="×">2×</div><div class="res-k">Monthly recurring revenue</div><div class="res-sub">For the PAM product</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 BEFORE / AFTER -->
+<section class="cs-sec alt" id="before-after" data-section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">06</span>
+      <div><div class="sec-kicker">Before · After</div><h2 class="sec-title">THE <span class="dim">REDESIGN</span></h2></div>
+    </div>
+    <figure class="fig rv">
+      <div class="ba-lbl">Before</div>
+      <div class="fig-frame"><img src="assets/img/sc-before.jpg" alt="Before — original Access Management dashboard" loading="lazy"/></div>
+    </figure>
+    <figure class="fig rv">
+      <div class="ba-lbl after">After · Light</div>
+      <div class="fig-frame"><img src="assets/img/sc-after-light.jpg" alt="After — redesigned PAM dashboard, light theme" loading="lazy"/></div>
+    </figure>
+    <figure class="fig rv">
+      <div class="ba-lbl after">After · Dark</div>
+      <div class="fig-frame"><img src="assets/img/sc-after-dark.jpg" alt="After — redesigned PAM dashboard, dark theme" loading="lazy"/></div>
+      <figcaption class="fig-cap">Light and dark themes replaced open-ended customization — WCAG-checked, keyboard-navigable, consistent across the ecosystem.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- NEXT / CTA -->
+<section class="cs-next" data-cta-zone>
+  <div class="s-tag rv">Next</div>
+  <h2 class="rv d1">LET'S BUILD<br>SOMETHING <span class="hl">GREAT</span>.</h2>
+  <p class="rv d2">Open to full-time roles, freelance projects, and conversations about design that moves the needle.</p>
+  <div class="cs-next-actions rv d3">
+    <a href="https://www.linkedin.com/in/keithdb" target="_blank" rel="noopener" class="btn btn-light">Start a Conversation ↗</a>
+    <a href="marketsquare.html" class="btn btn-outline">Next: MarketSquare →</a>
+  </div>
+</section>
+
+<footer>
+  <span class="f-copy">© 2025 Keith Brooks · All rights reserved</span>
+  <span class="f-tag" aria-hidden="true">ScreenConnect · Case Study 01</span>
+</footer>
+
+<script src="assets/ds.js"></script>
+</body>
+</html>
