@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>MarketSquare — Design System board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#16121F; --body:#433C52; --muted:#635C72;
+  --p:#9D52FF; --p-d:#6B38AD; --p-soft:#D6B6FF; --p-tint:#F5EEFF;
+  --bg:#FBFAFD; --surf:#F4F0FA; --line:rgba(40,28,60,.10);
+  --f:'Epilogue',sans-serif; --m:'DM Mono',monospace;
+}
+body{width:1600px;height:1080px;background:var(--bg);font-family:var(--f);color:var(--ink);padding:56px 60px;overflow:hidden;}
+.board{width:100%;height:100%;display:flex;flex-direction:column;gap:26px;}
+
+/* header */
+.bh{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:22px;}
+.bh-l{display:flex;align-items:center;gap:18px;}
+.logo{width:54px;height:54px;border-radius:15px;background:linear-gradient(150deg,var(--p),var(--p-d));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:27px;letter-spacing:-.02em;box-shadow:0 8px 22px rgba(109,74,167,.32);}
+.bh h1{font-size:31px;font-weight:800;letter-spacing:-.02em;}
+.bh .sub{font-family:var(--m);font-size:13px;color:var(--muted);letter-spacing:.04em;margin-top:4px;}
+.bh-r{font-family:var(--m);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--p);text-align:right;line-height:1.7;}
+
+.grid{flex:1;display:grid;grid-template-columns:1.15fr 1fr 1.15fr;grid-template-rows:auto auto;gap:22px;}
+.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px 28px;display:flex;flex-direction:column;}
+.p-tag{font-family:var(--m);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--p);margin-bottom:18px;display:flex;align-items:center;gap:9px;}
+.p-tag::before{content:'';width:16px;height:2px;background:var(--p);border-radius:2px;}
+
+/* color */
+.sw-row{display:flex;gap:10px;margin-bottom:16px;}
+.sw{flex:1;}
+.sw .chip{height:62px;border-radius:11px;border:1px solid var(--line);}
+.sw .nm{font-family:var(--m);font-size:10px;color:var(--muted);margin-top:8px;letter-spacing:.02em;}
+.ramp{display:flex;height:38px;border-radius:10px;overflow:hidden;border:1px solid var(--line);}
+.ramp div{flex:1;}
+.ramp-lbl{font-family:var(--m);font-size:10px;color:var(--muted);margin-top:10px;letter-spacing:.06em;}
+.scale-lbl{display:flex;margin-top:7px;}
+.scale-lbl span{flex:1;text-align:center;font-family:var(--m);font-size:9px;color:var(--muted);letter-spacing:.02em;}
+.scale-lbl span.on{color:var(--p);font-weight:500;}
+.nm b{display:block;color:var(--p);font-weight:600;margin-top:2px;}
+.checks{margin-top:16px;display:flex;flex-direction:column;gap:9px;}
+.ck{display:flex;align-items:center;gap:10px;font-family:var(--m);font-size:11px;color:var(--body);letter-spacing:.02em;}
+.ck b{margin-left:auto;color:var(--p);font-weight:500;}
+.ck-dot{width:18px;height:18px;border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;}
+
+/* type */
+.ty{display:flex;flex-direction:column;gap:14px;}
+.ty-row{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:13px;}
+.ty-row:last-child{border-bottom:none;}
+.ty-spec{font-family:var(--m);font-size:10px;color:var(--muted);letter-spacing:.04em;}
+.d1{font-size:42px;font-weight:800;letter-spacing:-.025em;line-height:.9;}
+.d2{font-size:27px;font-weight:700;letter-spacing:-.02em;}
+.d3{font-size:18px;font-weight:600;}
+.d4{font-size:15px;font-weight:400;color:var(--body);}
+.d5{font-family:var(--m);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+
+/* components */
+.btns{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:20px;}
+.btn{padding:13px 24px;border-radius:12px;font-size:14px;font-weight:600;letter-spacing:.01em;}
+.btn.pri{background:var(--p);color:#fff;box-shadow:0 6px 16px rgba(109,74,167,.28);}
+.btn.sec{background:var(--p-tint);color:var(--p-d);}
+.btn.gho{background:transparent;color:var(--ink);border:1.5px solid var(--line);}
+.field{display:flex;align-items:center;gap:11px;background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:14px 16px;color:var(--muted);font-size:14px;margin-bottom:16px;}
+.field .ic{width:17px;height:17px;border:2px solid var(--muted);border-radius:50%;position:relative;flex-shrink:0;}
+.field .ic::after{content:'';position:absolute;width:7px;height:2px;background:var(--muted);transform:rotate(45deg);bottom:-1px;right:-4px;border-radius:2px;}
+.chips{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px;}
+.chip2{padding:8px 15px;border-radius:100px;font-size:12px;font-weight:500;background:#fff;border:1px solid var(--p-soft);color:var(--p-d);}
+.chip2.on{background:var(--p);color:#fff;border-color:var(--p);}
+.tog-row{display:flex;align-items:center;gap:14px;margin-top:auto;}
+.tog{width:52px;height:30px;border-radius:100px;background:var(--p);position:relative;}
+.tog::after{content:'';position:absolute;top:3px;right:3px;width:24px;height:24px;border-radius:50%;background:#fff;}
+.tog.off{background:#D9D2E6;}
+.tog.off::after{left:3px;right:auto;}
+.tog-lbl{font-family:var(--m);font-size:11px;color:var(--muted);letter-spacing:.04em;}
+
+/* listing card pattern */
+.lc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;width:100%;}
+.lc-img{height:118px;background:linear-gradient(135deg,#3C1F61,#9D52FF);position:relative;}
+.lc-fav{position:absolute;top:11px;right:11px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;color:var(--p);font-size:15px;}
+.lc-verif{position:absolute;bottom:11px;left:11px;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.92);border-radius:100px;padding:5px 11px;font-size:10px;font-weight:700;color:var(--p-d);letter-spacing:.03em;}
+.lc-verif .v{width:13px;height:13px;border-radius:50%;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;font-size:8px;}
+.lc-body{padding:13px 15px;}
+.lc-t{font-size:15px;font-weight:700;letter-spacing:-.01em;}
+.lc-p{font-size:17px;font-weight:800;color:var(--p);margin-top:3px;}
+.lc-m{font-family:var(--m);font-size:10px;color:var(--muted);margin-top:5px;letter-spacing:.03em;}
+
+/* dock */
+.dock{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 26px;margin-top:16px;}
+.dk{width:24px;height:24px;border-radius:7px;background:#E4DCF1;}
+.dk.act{background:var(--p);}
+.dk.fab{width:42px;height:42px;border-radius:13px;background:linear-gradient(150deg,var(--p),var(--p-d));box-shadow:0 6px 14px rgba(109,74,167,.3);}
+
+.span2{grid-column:span 1;}
+.tall{grid-row:span 2;}
+.foot{display:flex;justify-content:space-between;font-family:var(--m);font-size:11px;color:var(--muted);letter-spacing:.06em;border-top:1px solid var(--line);padding-top:18px;}
+</style>
+</head>
+<body>
+<div class="board">
+
+  <header class="bh">
+    <div class="bh-l">
+      <div class="logo">M</div>
+      <div>
+        <h1>MarketSquare — Design System</h1>
+        <div class="sub">Foundations · Components · Patterns — light &amp; dark, handed off to engineering</div>
+      </div>
+    </div>
+    <div class="bh-r">Version 1.0<br>iOS · 8pt grid</div>
+  </header>
+
+  <div class="grid">
+
+    <!-- COLOR -->
+    <section class="panel">
+      <div class="p-tag">01 — Color · WCAG AA</div>
+      <div style="display:flex;align-items:center;gap:15px;margin-bottom:18px">
+        <div style="width:84px;height:84px;border-radius:15px;background:#9D52FF;box-shadow:0 8px 22px rgba(157,82,255,.42);flex-shrink:0"></div>
+        <div>
+          <div style="font-size:19px;font-weight:800;letter-spacing:-.02em">Brand Purple</div>
+          <div class="nm" style="margin-top:5px">Base · 500 — <b>#9D52FF</b></div>
+          <div class="nm" style="margin-top:5px">hsl(266 · 100% · 66%) — single-hue scale</div>
+        </div>
+      </div>
+      <div class="ramp">
+        <div style="background:#F5EEFF"></div><div style="background:#E9D9FF"></div><div style="background:#D6B6FF"></div><div style="background:#C294FF"></div><div style="background:#B175FF"></div><div style="background:#9D52FF"></div><div style="background:#8546D9"></div><div style="background:#6B38AD"></div><div style="background:#522B85"></div><div style="background:#3C1F61"></div>
+      </div>
+      <div class="scale-lbl"><span>50</span><span>100</span><span>200</span><span>300</span><span>400</span><span class="on">500</span><span>600</span><span>700</span><span>800</span><span>900</span></div>
+      <div class="ramp-lbl" style="margin-top:7px">Purple 50 → 900 — every step a tint or shade of #9D52FF</div>
+      <div class="ramp" style="margin-top:16px">
+        <div style="background:#16121F"></div><div style="background:#3A3348"></div><div style="background:#635C72"></div><div style="background:#A59EB0"></div><div style="background:#D7D2DF"></div><div style="background:#F4F0FA"></div><div style="background:#FFFFFF"></div>
+      </div>
+      <div class="ramp-lbl">Neutral ramp — Ink 900 → Surface 0</div>
+      <div class="checks">
+        <div class="ck"><span class="ck-dot" style="background:#16121F"></span>Ink on Background<b>15.1:1 · AAA</b></div>
+        <div class="ck"><span class="ck-dot" style="background:#522B85"></span>Purple 800 text on White<b>10.3:1 · AAA</b></div>
+        <div class="ck"><span class="ck-dot" style="background:#9D52FF;color:#fff">A</span>White on Purple 500<b>4.1:1 · AA</b></div>
+      </div>
+    </section>
+
+    <!-- TYPE -->
+    <section class="panel">
+      <div class="p-tag">02 — Type</div>
+      <div class="ty">
+        <div class="ty-row"><div class="d1">Aa</div><div class="ty-spec">Display<br>800 · 42</div></div>
+        <div class="ty-row"><div class="d2">Sell with clarity</div><div class="ty-spec">Title · 700 · 27</div></div>
+        <div class="ty-row"><div class="d3">Section heading</div><div class="ty-spec">600 · 18</div></div>
+        <div class="ty-row"><div class="d4">Body copy for listings, flows and detail views.</div><div class="ty-spec">400 · 15</div></div>
+        <div class="ty-row"><div class="d5">Label · Metadata</div><div class="ty-spec">Mono · 12</div></div>
+      </div>
+    </section>
+
+    <!-- COMPONENTS -->
+    <section class="panel tall">
+      <div class="p-tag">03 — Components</div>
+      <div class="btns">
+        <span class="btn pri">List an item</span>
+        <span class="btn sec">Save</span>
+        <span class="btn gho">Cancel</span>
+      </div>
+      <div class="field"><span class="ic"></span>Search MarketSquare</div>
+      <div class="chips">
+        <span class="chip2 on">All</span><span class="chip2">Watches</span><span class="chip2">Art</span><span class="chip2">Jewelry</span><span class="chip2">Sneakers</span>
+      </div>
+      <div style="height:1px;background:var(--line);margin:4px 0 18px"></div>
+      <div class="p-tag" style="margin-bottom:14px">04 — Listing pattern</div>
+      <div class="lc">
+        <div class="lc-img"><div class="lc-fav">♥</div><div class="lc-verif"><span class="v">✓</span>ID Verified Seller</div></div>
+        <div class="lc-body">
+          <div class="lc-t">Vintage Omega Seamaster</div>
+          <div class="lc-p">$2,450</div>
+          <div class="lc-m">2.1 mi away · AI-tagged · Escrow</div>
+        </div>
+      </div>
+      <div class="tog-row">
+        <div class="tog"></div><span class="tog-lbl">Dark</span>
+        <div class="tog off" style="margin-left:6px"></div><span class="tog-lbl">Light</span>
+      </div>
+    </section>
+
+    <!-- TOKENS / SPACING -->
+    <section class="panel">
+      <div class="p-tag">05 — Spacing &amp; radius</div>
+      <div style="display:flex;gap:10px;align-items:flex-end;margin-bottom:18px">
+        <div style="width:8px;height:8px;background:var(--p-soft);border-radius:2px"></div>
+        <div style="width:16px;height:16px;background:var(--p-soft);border-radius:3px"></div>
+        <div style="width:24px;height:24px;background:var(--p-soft);border-radius:4px"></div>
+        <div style="width:32px;height:32px;background:var(--p);border-radius:6px"></div>
+        <div style="width:48px;height:48px;background:var(--p);border-radius:8px"></div>
+      </div>
+      <div class="ramp-lbl" style="margin-top:0">8pt scale — 8 / 16 / 24 / 32 / 48</div>
+      <div style="display:flex;gap:12px;margin-top:22px">
+        <div style="flex:1;height:54px;border:1.5px solid var(--p-soft);border-radius:8px"></div>
+        <div style="flex:1;height:54px;border:1.5px solid var(--p-soft);border-radius:13px"></div>
+        <div style="flex:1;height:54px;border:1.5px solid var(--p-soft);border-radius:100px"></div>
+      </div>
+      <div class="ramp-lbl">Radius — sm 8 · md 13 · pill</div>
+    </section>
+
+    <!-- NAV / DOCK -->
+    <section class="panel">
+      <div class="p-tag">06 — Navigation</div>
+      <div style="font-size:13px;line-height:1.6;color:var(--body);margin-bottom:14px">A fixed dock with a single elevated action — calm chrome, one obvious next tap.</div>
+      <div class="dock">
+        <div class="dk act"></div><div class="dk"></div><div class="dk fab"></div><div class="dk"></div><div class="dk"></div>
+      </div>
+      <div class="tog-row" style="margin-top:20px">
+        <span class="tog-lbl" style="color:var(--p-d);font-weight:600">MFA</span>
+        <span class="lc-verif" style="position:static;background:var(--p-tint)"><span class="v">✓</span>ID Verified</span>
+        <span class="chip2 on" style="border-radius:10px">Pay to talk</span>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="foot">
+    <span>32 components · 6 token groups · light + dark</span>
+    <span>Built in Figma — variables &amp; auto-layout · dev-ready handoff</span>
+  </footer>
+
+</div>
+</body>
+</html>
